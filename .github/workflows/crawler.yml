@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
           clean: true
@@ -113,13 +113,13 @@ jobs:
 
       - name: Set up Python
         if: success()
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
       - name: Install uv
         if: success()
-        uses: astral-sh/setup-uv@v7
+        uses: astral-sh/setup-uv@v4
 
       - name: Install dependencies
         if: success()
@@ -215,10 +215,9 @@ jobs:
           command: pages deploy cloudflare_dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v7.0.2
+        uses: actions/upload-artifact@v4
         with:
           name: crawler-output
           path: output
           if-no-files-found: warn
           overwrite: true
-
